@@ -1,25 +1,47 @@
-
-import './App.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Start from './pages/Start'
-import { useState } from 'react'
-import Question from './pages/Question'
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Start from "./pages/Start";
+import { useState } from "react";
+import Question from "./pages/Question";
+import Score from "./pages/Score";
+import Review from "./pages/Review";
 
 function App() {
-  const [display, setDisplay] = useState('start')
+  const [display, setDisplay] = useState("start");
+  const [index, setIndex] = useState(0);
+  const [answer, setAnswer] = useState({});
+  const [score, setScore] = useState({})
+  const handlePrev = () => {
+    setIndex((index) => index - 1);
+  };
+  const handleNext = () => {
+    setIndex((index) => index + 1);
+  };
   return (
     <>
-      <div className='h-screen flex flex-col'>
-        <Header display={display}/>
-        <div className='w-full bg-slate-400 flex-1'>
-          {display === 'start' && <Start setDisplay={setDisplay}/>}
-          {display === 'question' && <Question/>}
+      <div className="h-screen flex flex-col">
+        <Header display={display} />
+        <div className="w-full bg-slate-400 flex-1">
+          {display === "start" && <Start setDisplay={setDisplay} />}
+          {display === "question" && (
+            <Question
+              index={index}
+              handleNext={handleNext}
+              handlePrev={handlePrev}
+              answer={answer}
+              setAnswer={setAnswer}
+              setScore={setScore}
+              setDisplay={setDisplay}
+            />
+          )}
+          {display === "score" && <Score score={score} setDisplay={setDisplay} setIndex={setIndex}/>}
+          {display === "review" && <Review />}
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
