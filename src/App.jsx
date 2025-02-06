@@ -11,13 +11,20 @@ function App() {
   const [display, setDisplay] = useState("start");
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState({});
-  const [score, setScore] = useState({})
+  const [score, setScore] = useState({});
   const handlePrev = () => {
     setIndex((index) => index - 1);
   };
   const handleNext = () => {
     setIndex((index) => index + 1);
   };
+
+  const handleReset = () => {
+    setIndex(0);
+    setAnswer({})
+    setDisplay('start')
+    setScore({})
+  }
   return (
     <>
       <div className="h-screen flex flex-col">
@@ -35,10 +42,20 @@ function App() {
               setDisplay={setDisplay}
             />
           )}
-          {display === "score" && <Score score={score} setDisplay={setDisplay} setIndex={setIndex}/>}
-          {display === "review" && <Review />}
+          {display === "score" && (
+            <Score score={score} setDisplay={setDisplay} setIndex={setIndex} />
+          )}
+          {display === "review" && (
+            <Review
+              index={index}
+              answer={answer}
+              setDisplay={setDisplay}
+              handlePrev={handlePrev}
+              handleNext={handleNext}
+            />
+          )}
         </div>
-        <Footer />
+        <Footer handleReset={handleReset}/>
       </div>
     </>
   );

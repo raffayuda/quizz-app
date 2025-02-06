@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer = ({handleReset}) => {
   return (
     <div className='w-full flex justify-between items-center px-[73px py-[9px] text-amber-700 h-[88px] bg-slate-500'>
         <div className='flex gap-[24px]'><svg
-					className='bg-amber-700 rounded-full fill-pink-400 hover:border-white hover:scale-110 hover:shadow-2xl hover:fill-white'
+					className='bg-amber-700 rounded-full fill-pink-400 hover:border-white hover:scale-110 hover:shadow-2xl hover:fill-white cursor-pointer'
 					xmlns='http://www.w3.org/2000/svg'
 					width='64'
 					height='64'
@@ -16,8 +16,8 @@ const Footer = () => {
 					/>
                     </svg>
                     <svg
-						
-						className='bg-amber-700 border-[6px] border-pink-400 rounded-full fill-pink-400 hover:border-white hover:scale-110 hover:shadow-2xl hover:fill-white'
+						onClick={handleReset}
+						className='bg-amber-700 border-[6px] cursor-pointer border-pink-400 rounded-full fill-pink-400 hover:border-white hover:scale-110 hover:shadow-2xl hover:fill-white'
 						xmlns='http://www.w3.org/2000/svg'
 						width='64'
 						height='64'
